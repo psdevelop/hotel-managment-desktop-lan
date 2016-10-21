@@ -1,0 +1,44 @@
+USE [HotelManagment]
+GO
+
+/****** Object:  Table [dbo].[Pereocenka]    Script Date: 05/11/2009 13:18:30 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[Pereocenka](
+	[BOLD_ID] [int] NOT NULL,
+	[BOLD_TYPE] [smallint] NOT NULL,
+	[Data_pereocenki] [datetime] NOT NULL,
+	[Summa] [decimal](28, 10) NOT NULL,
+	[Opisanie] [varchar](255) NOT NULL,
+	[pereoceniv_stoim] [int] NULL,
+ CONSTRAINT [IX_Pereocenka_B8LI] PRIMARY KEY CLUSTERED 
+(
+	[BOLD_ID] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+--ALTER TABLE [dbo].[Pereocenka] ADD  CONSTRAINT [DF_Pereocenka_Data_pereocenki]  DEFAULT (getdate()) FOR [Data_pereocenki]
+--GO
+
+ALTER TABLE [dbo].[Pereocenka] ADD  DEFAULT ((0)) FOR [Summa]
+GO
+
+ALTER TABLE [dbo].[Pereocenka] ADD  DEFAULT ('') FOR [Opisanie]
+GO
+
+ALTER TABLE [dbo].[Pereocenka] ADD  DEFAULT ((-1)) FOR [pereoceniv_stoim]
+GO
+==============================
+

@@ -1,0 +1,511 @@
+object BoldOthHandleCompDM: TBoldOthHandleCompDM
+  OldCreateOrder = False
+  Height = 495
+  Width = 601
+  object bpcEnabledAdmin: TBoldPropertiesController
+    BoldHandle = BoldHandlesDM.blhCurrUser
+    BoldProperties.Expression = 'razresh_administr or razreshitj_vsyo'
+    DrivenProperties = <
+      item
+        VCLComponent = FirstForm.AdministrationPanelToolButton
+        PropertyName = 'Enabled'
+        ReadOnly = False
+      end
+      item
+        VCLComponent = FirstForm.AdminPanelMenu
+        PropertyName = 'Enabled'
+        ReadOnly = False
+      end>
+    Left = 512
+    Top = 192
+  end
+  object bpcEnablkedPrSettings: TBoldPropertiesController
+    BoldHandle = BoldHandlesDM.blhCurrUser
+    BoldProperties.Expression = 'razresh_nastroiku_raboty  or razreshitj_vsyo'
+    DrivenProperties = <
+      item
+        VCLComponent = FirstForm.ProgrammSettingsToolButton
+        PropertyName = 'Enabled'
+        ReadOnly = False
+      end>
+    Left = 512
+    Top = 208
+  end
+  object bpcEnabledLogView: TBoldPropertiesController
+    BoldHandle = BoldHandlesDM.blhCurrUser
+    BoldProperties.Expression = 'razreshitj_prosmotr_logov or razreshitj_vsyo'
+    DrivenProperties = <
+      item
+        VCLComponent = FirstForm.LogViewPanelToolButton
+        PropertyName = 'Enabled'
+        ReadOnly = False
+      end>
+    Left = 512
+    Top = 176
+  end
+  object brhCurrRoom: TBoldReferenceHandle
+    StaticSystemHandle = BoldModelDM.bsh
+    StaticValueTypeName = 'Nomer_arendy'
+    Left = 184
+    Top = 264
+  end
+  object brhCurrRoomClass: TBoldReferenceHandle
+    StaticSystemHandle = BoldModelDM.bsh
+    StaticValueTypeName = 'Klass_nomera'
+    Left = 184
+    Top = 144
+  end
+  object brhCurrClient: TBoldReferenceHandle
+    StaticSystemHandle = BoldModelDM.bsh
+    StaticValueTypeName = 'Klient'
+    Left = 184
+    Top = 344
+  end
+  object brhCurrClientDoc: TBoldReferenceHandle
+    StaticSystemHandle = BoldModelDM.bsh
+    StaticValueTypeName = 'List_klienta'
+    Left = 184
+    Top = 304
+  end
+  object brhCurrHotel: TBoldReferenceHandle
+    StaticSystemHandle = BoldModelDM.bsh
+    StaticValueTypeName = 'Otelj'
+    Left = 184
+  end
+  object bpcHotelDelete: TBoldPropertiesController
+    BoldHandle = BoldHandlesDM.blhCurrUser
+    BoldProperties.Expression = 'razreshitj_manip_otelei or razreshitj_vsyo'
+    BoldProperties.Variables = bovCurrHotel
+    DrivenProperties = <
+      item
+      end>
+    Left = 384
+  end
+  object bovCurrHotel: TBoldOclVariables
+    Variables = <
+      item
+        BoldHandle = behCurrHotel
+        VariableName = 'bv_CurrHotel'
+        UseListElement = False
+      end>
+    Left = 256
+  end
+  object behCurrHotel: TBoldExpressionHandle
+    RootHandle = BoldHandlesDM.blhAllHotels
+    Expression = 'not self.isNull'
+    Left = 296
+  end
+  object basrClassFontColor: TBoldAsStringRenderer
+    OnSetColor = basrClassFontColorSetColor
+    Left = 56
+    Top = 128
+  end
+  object basrClassBackColor: TBoldAsStringRenderer
+    OnSetColor = basrClassBackColorSetColor
+    Left = 56
+    Top = 144
+  end
+  object basrFreeBackColor: TBoldAsStringRenderer
+    OnSetColor = basrFreeBackColorSetColor
+    Left = 56
+    Top = 192
+  end
+  object basrFreeFontColor: TBoldAsStringRenderer
+    OnSetColor = basrFreeFontColorSetColor
+    Left = 56
+    Top = 160
+  end
+  object basrSelBackColor: TBoldAsStringRenderer
+    OnSetColor = basrSelBackColorSetColor
+    Left = 56
+    Top = 112
+  end
+  object basrSetFontColor: TBoldAsStringRenderer
+    OnSetColor = basrSetFontColorSetColor
+    Left = 56
+    Top = 96
+  end
+  object basrWallBackColor: TBoldAsStringRenderer
+    OnGetAsString = basrWallBackColorGetAsString
+    OnSetColor = basrWallBackColorSetColor
+    Left = 56
+    Top = 328
+  end
+  object basrWallFontColor: TBoldAsStringRenderer
+    OnSetColor = basrWallFontColorSetColor
+    Left = 56
+    Top = 48
+  end
+  object basrMeryBackColor: TBoldAsStringRenderer
+    OnSetColor = basrMeryBackColorSetColor
+    Left = 56
+    Top = 208
+  end
+  object basrMeryFontColor: TBoldAsStringRenderer
+    OnSetColor = basrMeryFontColorSetColor
+    Left = 56
+    Top = 176
+  end
+  object basrWaitBackColor: TBoldAsStringRenderer
+    Left = 56
+    Top = 240
+  end
+  object basrWaitFontColor: TBoldAsStringRenderer
+    Left = 56
+    Top = 224
+  end
+  object basrApClassColorFont: TBoldAsStringRenderer
+    OnSetFont = basrApClassColorFontSetFont
+    OnSetColor = basrApClassColorFontSetColor
+    Left = 56
+    Top = 32
+  end
+  object basrApartmColorFont: TBoldAsStringRenderer
+    OnSetFont = basrApartmColorFontSetFont
+    OnSetColor = basrApartmColorFontSetColor
+    Left = 56
+    Top = 64
+  end
+  object basrClientColorFont: TBoldAsStringRenderer
+    OnSetFont = basrClientColorFontSetFont
+    OnSetColor = basrClientColorFontSetColor
+    Left = 56
+    Top = 16
+  end
+  object basrDaysCountSet: TBoldAsStringRenderer
+    OnGetAsString = basrDaysCountSetGetAsString
+    OnSetAsString = basrDaysCountSetSetAsString
+    Left = 56
+    Top = 344
+  end
+  object bpcDriverSaleEnabled: TBoldPropertiesController
+    BoldHandle = brhCurrClientDoc
+    BoldProperties.Expression = 'not self.isNull and not yavl_rash_dostavshiku'
+    DrivenProperties = <
+      item
+        VCLComponent = ReleaseStructForm.BitBtn1
+        PropertyName = 'Enabled'
+      end>
+    Left = 512
+    Top = 320
+  end
+  object behNewReserv: TBoldExpressionHandle
+    RootHandle = BoldModelDM.bsh
+    Expression = 
+      'Bronj.allInstances->select(zabroniroval_nomer=bv_CAp)'#13'->select(z' +
+      'abronirovan_klientom=bv_CCL)'#13'->orderby(data_bronirovaniya)->firs' +
+      't'
+    Variables = bovCurrBRH
+    Left = 328
+    Top = 48
+  end
+  object behNewWait: TBoldExpressionHandle
+    RootHandle = BoldModelDM.bsh
+    Expression = 
+      'Ogidanie.allInstances->select(nah_v_ogidanii_v=bv_CApCl)'#13'->selec' +
+      't(yavl_mestom_ogid_dlya=bv_CCl)'#13'->orderby(nachalo_ogidaniya)->fi' +
+      'rst'
+    Variables = bovCurrBRH
+    Left = 256
+    Top = 48
+  end
+  object bovCurrBRH: TBoldOclVariables
+    Variables = <
+      item
+        BoldHandle = brhCurrClient
+        VariableName = 'bv_CCL'
+        UseListElement = False
+      end
+      item
+        BoldHandle = brhCurrRoomClass
+        VariableName = 'bv_CApCl'
+        UseListElement = False
+      end
+      item
+        BoldHandle = brhCurrRoom
+        VariableName = 'bv_CAp'
+        UseListElement = False
+      end>
+    Left = 184
+    Top = 48
+  end
+  object basrMeryTimeColorFont: TBoldAsStringRenderer
+    OnSetFont = basrMeryTimeColorFontSetFont
+    OnSetColor = basrMeryTimeColorFontSetColor
+    Left = 56
+    Top = 80
+  end
+  object basrUnSaleColorFont: TBoldAsStringRenderer
+    OnSetFont = basrUnSaleColorFontSetFont
+    OnSetColor = basrUnSaleColorFontSetColor
+    Left = 56
+  end
+  object brhSetPriceApart: TBoldReferenceHandle
+    StaticSystemHandle = BoldModelDM.bsh
+    StaticValueTypeName = 'Nomer_arendy'
+    Left = 440
+    Top = 64
+  end
+  object blhActiveRent: TBoldListHandle
+    RootHandle = brhSetPriceApart
+    Expression = 
+      'ekspluataciya_fiks_v->select(tek_vremya<data_vyezda)'#13'->select(no' +
+      't osvobogdyon or'#13'(opis_prog_klienta->size=0))'
+    Variables = bovSetPriceApart
+    Left = 184
+    Top = 96
+  end
+  object behAccountHour: TBoldExpressionHandle
+    RootHandle = BoldHandlesDM.blhSettObj
+    Expression = 'schitatj_chasy_pri_pereocenk'
+    Left = 352
+    Top = 96
+  end
+  object bovSetPriceApart: TBoldOclVariables
+    Variables = <
+      item
+        BoldHandle = behAccountHour
+        VariableName = 'bv_HourAccount'
+        UseListElement = False
+      end>
+    Left = 264
+    Top = 96
+  end
+  object basrSetRoomPrice: TBoldAsStringRenderer
+    OnSetAsString = basrSetRoomPriceSetAsString
+    Left = 56
+    Top = 312
+  end
+  object basrSetClassPrice: TBoldAsStringRenderer
+    OnSetAsString = basrSetClassPriceSetAsString
+    Left = 56
+    Top = 296
+  end
+  object basrReservPercent: TBoldAsStringRenderer
+    OnSetAsString = basrReservPercentSetAsString
+    Left = 56
+    Top = 280
+  end
+  object bpcRentManCount: TBoldPropertiesController
+    BoldHandle = brhCurrClientDoc
+    BoldProperties.Expression = 
+      #39#1048#1090#1086#1075#1086' '#1085#1086#1084#1077#1088' '#1072#1088#1077#1085#1076#1091#1102#1090' '#1095#1077#1083#1086#1074#1077#1082' - '#39'+poseleno_chislo.formatNumeric(' +
+      #39'%.0f'#39')'
+    BoldProperties.NilStringRepresentation = #1053#1077' '#1074#1099#1076#1077#1083#1077#1085#1072' '#1072#1088#1077#1085#1076#1072
+    DrivenProperties = <
+      item
+        VCLComponent = ReleaseStructForm.StatusBar4
+        PropertyName = 'Panels[0].Text'
+      end>
+    Left = 512
+    Top = 304
+  end
+  object bpcRentWaitSale: TBoldPropertiesController
+    BoldHandle = brhCurrClientDoc
+    BoldProperties.Expression = 
+      #39#1044#1086#1083#1075' '#1082#1083#1080#1077#1085#1090#1072' '#1089#1086#1089#1090#1072#1074#1083#1103#1077#1090': '#39'+(dolg_klient).formatNumeric('#39'%.2f'#39').' +
+      'asString'
+    BoldProperties.NilStringRepresentation = #1053#1077' '#1074#1099#1076#1077#1083#1077#1085#1072' '#1072#1088#1077#1085#1076#1072
+    DrivenProperties = <
+      item
+        VCLComponent = ReleaseStructForm.StatusBar4
+        PropertyName = 'Panels[1].Text'
+      end>
+    Left = 512
+    Top = 288
+  end
+  object BaseActionList: TActionList
+    Images = ImageListsDM.BaseActionImageList
+    Left = 272
+    Top = 184
+    object KlientDeleteAction: TAction
+      Caption = #1059#1076#1072#1083#1080#1090#1100' '#1079#1072#1087#1080#1089#1100' '#1082#1083#1080#1077#1085#1090#1072' '#1089#1086#1074#1089#1077#1084
+      Enabled = False
+      ImageIndex = 0
+      OnExecute = KlientDeleteActionExecute
+    end
+  end
+  object bpcAllowClientDel: TBoldPropertiesController
+    BoldHandle = BoldHandlesDM.blhCurrUser
+    BoldProperties.Expression = '(razreshitj_udalenie_ostaljnogo or razreshitj_vsyo)'
+    DrivenProperties = <
+      item
+        VCLComponent = KlientDeleteAction
+        PropertyName = 'Enabled'
+      end>
+    Left = 512
+    Top = 160
+  end
+  object bovCurrUser: TBoldOclVariables
+    Variables = <
+      item
+        BoldHandle = behAllowAll
+        VariableName = 'bv_AllowAll'
+        UseListElement = True
+      end>
+    Left = 352
+    Top = 184
+  end
+  object behAllowAll: TBoldExpressionHandle
+    RootHandle = BoldHandlesDM.blhCurrUser
+    Expression = 'self.razreshitj_vsyo'
+    Left = 184
+    Top = 184
+  end
+  object bpcHasCurrRent: TBoldPropertiesController
+    BoldHandle = brhCurrClientDoc
+    BoldProperties.Expression = 'not self.isNull'
+    BoldProperties.NilStringRepresentation = #1053#1077' '#1074#1099#1076#1077#1083#1077#1085#1072' '#1072#1088#1077#1085#1076#1072
+    DrivenProperties = <
+      item
+        VCLComponent = BoldHandlesDM.AddNewSaleAction
+        PropertyName = 'Enabled'
+      end
+      item
+        VCLComponent = BoldHandlesDM.AddNewRePriceAction
+        PropertyName = 'Enabled'
+      end
+      item
+        VCLComponent = BoldHandlesDM.LateRentaAction
+        PropertyName = 'Enabled'
+      end>
+    Left = 512
+    Top = 272
+  end
+  object behLastCurrRoomExpl: TBoldExpressionHandle
+    RootHandle = brhCurrRoom
+    Expression = 
+      'if ekspluataciya_fiks_v->select(osvobogdyon)->size=0 then nil '#13'e' +
+      'lse ekspluataciya_fiks_v->orderby(data_vyezda)->last endif'
+    Left = 272
+    Top = 264
+  end
+  object basrSetOptionsClass: TBoldAsStringRenderer
+    OnGetAsString = basrSetOptionsClassGetAsString
+    Left = 56
+    Top = 360
+  end
+  object basrSetPriceClass: TBoldAsStringRenderer
+    OnGetAsString = basrSetPriceClassGetAsString
+    Left = 56
+    Top = 376
+  end
+  object basrLookUpClass: TBoldAsStringRenderer
+    OnGetAsString = basrLookUpClassGetAsString
+    Left = 56
+    Top = 392
+  end
+  object bpcEnAddRes: TBoldPropertiesController
+    BoldHandle = behEnAddRes
+    BoldProperties.Expression = 'self'
+    DrivenProperties = <
+      item
+        VCLComponent = ReleaseStructForm.AddResBitBtn
+        PropertyName = 'Enabled'
+        ReadOnly = False
+      end
+      item
+        VCLComponent = ReleaseStructForm.AddWaitBitBtn
+        PropertyName = 'Enabled'
+        ReadOnly = False
+      end>
+    Left = 184
+    Top = 232
+  end
+  object bovEnAddRes: TBoldOclVariables
+    Variables = <
+      item
+        BoldHandle = behHasCR
+        VariableName = 'bv_HCR'
+        UseListElement = False
+      end>
+    Left = 256
+    Top = 232
+  end
+  object behHasCR: TBoldExpressionHandle
+    StaticSystemHandle = BoldModelDM.bsh
+    RootHandle = brhCurrRoom
+    Expression = 'not self.isNull'
+    Left = 320
+    Top = 232
+  end
+  object behEnAddRes: TBoldExpressionHandle
+    RootHandle = BoldHandlesDM.blhClientSearch
+    Expression = 'not self.isNull and bv_HCR'
+    Variables = bovEnAddRes
+    Left = 288
+    Top = 232
+  end
+  object bpcEnPriceSettings: TBoldPropertiesController
+    BoldHandle = BoldHandlesDM.blhCurrUser
+    BoldProperties.Expression = 'razr_nastroiku_cennobraz or razreshitj_vsyo'
+    DrivenProperties = <
+      item
+        VCLComponent = ReleaseStructForm.PricePolitikTabSheet
+        PropertyName = 'TabVisible'
+      end
+      item
+        VCLComponent = ReleaseStructForm.DiscountPolitikTabSheet
+        PropertyName = 'TabVisible'
+      end>
+    Left = 512
+    Top = 224
+  end
+  object blhCurRentClients: TBoldListHandle
+    RootHandle = brhCurrClientDoc
+    Expression = 'progivanie'
+    Left = 272
+    Top = 304
+  end
+  object blhRentClientDiscGroups: TBoldListHandle
+    RootHandle = blhCurRentClients
+    Expression = 
+      'progivaet_soglasno.opis_progiv_v.sootvetstvuet.imeet_bazovuyu_st' +
+      'oimostj.imeet_skidki.yavl_osnov_dlya_rasch->intersection(progiva' +
+      'et_soglasno.opis_progiv_v.sootvetstvuet.imeet_bazovuyu_stoimostj' +
+      '.imeet_skidki.yavl_osnov_dlya_rasch)'
+    Left = 376
+    Top = 304
+  end
+  object behRentClientObj: TBoldExpressionHandle
+    RootHandle = blhCurRentClients
+    Expression = 'self'
+    Left = 272
+    Top = 344
+  end
+  object bovRentClDiscGr: TBoldOclVariables
+    Variables = <
+      item
+        BoldHandle = behRentClientObj
+        VariableName = 'bv_RentCl'
+        UseListElement = False
+      end>
+    Left = 376
+    Top = 344
+  end
+  object behDHasInDiscGroup: TBoldExpressionHandle
+    RootHandle = blhRentClientDiscGroups
+    Expression = 'bv_RentCl.otd_chel_imeet_skidki->includes(self)'
+    Variables = bovRentClDiscGr
+    Left = 272
+    Top = 384
+  end
+  object behRentCount: TBoldExpressionHandle
+    RootHandle = BoldModelDM.bsh
+    Expression = 'List_klienta.allInstances->size'
+    Left = 528
+    Top = 48
+  end
+  object behRoomCount: TBoldExpressionHandle
+    RootHandle = BoldModelDM.bsh
+    Expression = 'Nomer_arendy.allInstances->size'
+    Left = 528
+    Top = 32
+  end
+  object behClientCount: TBoldExpressionHandle
+    RootHandle = BoldModelDM.bsh
+    Expression = 'Klient.allInstances->size'
+    Left = 528
+    Top = 16
+  end
+end

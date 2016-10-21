@@ -1,0 +1,615 @@
+unit BoldOtherHandlCompUnit;
+
+interface
+
+uses
+  SysUtils, Classes, BoldOclVariables, BoldReferenceHandle,
+  BoldAbstractListHandle, BoldCursorHandle, BoldVariableHandle,
+  BoldDerivedHandle, BoldSubscription, BoldHandles, BoldRootedHandles,
+  BoldExpressionHandle, Graphics, BoldElements, BoldControlPack, BoldStringControlPack,
+  BoldListHandle, BoldSQLHandle, BoldPropertiesController,
+  BoldCheckboxStateControlPack, Controls, ActnList;
+
+type
+  TBoldOthHandleCompDM = class(TDataModule)
+    bpcEnabledAdmin: TBoldPropertiesController;
+    bpcEnablkedPrSettings: TBoldPropertiesController;
+    bpcEnabledLogView: TBoldPropertiesController;
+    brhCurrRoom: TBoldReferenceHandle;
+    brhCurrRoomClass: TBoldReferenceHandle;
+    brhCurrClient: TBoldReferenceHandle;
+    brhCurrClientDoc: TBoldReferenceHandle;
+    brhCurrHotel: TBoldReferenceHandle;
+    bpcHotelDelete: TBoldPropertiesController;
+    bovCurrHotel: TBoldOclVariables;
+    behCurrHotel: TBoldExpressionHandle;
+    basrClassFontColor: TBoldAsStringRenderer;
+    basrClassBackColor: TBoldAsStringRenderer;
+    basrFreeBackColor: TBoldAsStringRenderer;
+    basrFreeFontColor: TBoldAsStringRenderer;
+    basrSelBackColor: TBoldAsStringRenderer;
+    basrSetFontColor: TBoldAsStringRenderer;
+    basrWallBackColor: TBoldAsStringRenderer;
+    basrWallFontColor: TBoldAsStringRenderer;
+    basrMeryBackColor: TBoldAsStringRenderer;
+    basrMeryFontColor: TBoldAsStringRenderer;
+    basrWaitBackColor: TBoldAsStringRenderer;
+    basrWaitFontColor: TBoldAsStringRenderer;
+    basrApClassColorFont: TBoldAsStringRenderer;
+    basrApartmColorFont: TBoldAsStringRenderer;
+    basrClientColorFont: TBoldAsStringRenderer;
+    basrDaysCountSet: TBoldAsStringRenderer;
+    bpcDriverSaleEnabled: TBoldPropertiesController;
+    behNewReserv: TBoldExpressionHandle;
+    behNewWait: TBoldExpressionHandle;
+    bovCurrBRH: TBoldOclVariables;
+    basrMeryTimeColorFont: TBoldAsStringRenderer;
+    basrUnSaleColorFont: TBoldAsStringRenderer;
+    brhSetPriceApart: TBoldReferenceHandle;
+    blhActiveRent: TBoldListHandle;
+    behAccountHour: TBoldExpressionHandle;
+    bovSetPriceApart: TBoldOclVariables;
+    basrSetRoomPrice: TBoldAsStringRenderer;
+    basrSetClassPrice: TBoldAsStringRenderer;
+    basrReservPercent: TBoldAsStringRenderer;
+    bpcRentManCount: TBoldPropertiesController;
+    bpcRentWaitSale: TBoldPropertiesController;
+    BaseActionList: TActionList;
+    KlientDeleteAction: TAction;
+    bpcAllowClientDel: TBoldPropertiesController;
+    bovCurrUser: TBoldOclVariables;
+    behAllowAll: TBoldExpressionHandle;
+    bpcHasCurrRent: TBoldPropertiesController;
+    behLastCurrRoomExpl: TBoldExpressionHandle;
+    basrSetOptionsClass: TBoldAsStringRenderer;
+    basrSetPriceClass: TBoldAsStringRenderer;
+    basrLookUpClass: TBoldAsStringRenderer;
+    bpcEnAddRes: TBoldPropertiesController;
+    bovEnAddRes: TBoldOclVariables;
+    behHasCR: TBoldExpressionHandle;
+    behEnAddRes: TBoldExpressionHandle;
+    bpcEnPriceSettings: TBoldPropertiesController;
+    blhCurRentClients: TBoldListHandle;
+    blhRentClientDiscGroups: TBoldListHandle;
+    behRentClientObj: TBoldExpressionHandle;
+    bovRentClDiscGr: TBoldOclVariables;
+    behDHasInDiscGroup: TBoldExpressionHandle;
+    function basrLookUpClassGetAsString(Element: TBoldElement;
+      Representation: Integer; Expression: string): string;
+    function basrSetPriceClassGetAsString(Element: TBoldElement;
+      Representation: Integer; Expression: string): string;
+    function basrSetOptionsClassGetAsString(Element: TBoldElement;
+      Representation: Integer; Expression: string): string;
+    procedure KlientDeleteActionExecute(Sender: TObject);
+    procedure basrReservPercentSetAsString(Element: TBoldElement;
+      NewValue: string; Representation: Integer; Expression: string);
+    procedure basrSetClassPriceSetAsString(Element: TBoldElement;
+      NewValue: string; Representation: Integer; Expression: string);
+    procedure basrSetRoomPriceSetAsString(Element: TBoldElement;
+      NewValue: string; Representation: Integer; Expression: string);
+    procedure basrUnSaleColorFontSetFont(Element: TBoldElement; AFont: TFont;
+      Representation: Integer; Expression: string);
+    procedure basrUnSaleColorFontSetColor(Element: TBoldElement; var AColor: TColor;
+      Representation: Integer; Expression: string);
+    procedure basrMeryTimeColorFontSetFont(Element: TBoldElement; AFont: TFont;
+      Representation: Integer; Expression: string);
+    procedure basrMeryTimeColorFontSetColor(Element: TBoldElement;
+      var AColor: TColor; Representation: Integer; Expression: string);
+    function basrWallBackColorGetAsString(Element: TBoldElement;
+      Representation: Integer; Expression: string): string;
+    function basrDaysCountSetGetAsString(Element: TBoldElement;
+      Representation: Integer; Expression: string): string;
+    procedure basrDaysCountSetSetAsString(Element: TBoldElement;
+      NewValue: string; Representation: Integer; Expression: string);
+    procedure basrApartmColorFontSetFont(Element: TBoldElement; AFont: TFont;
+      Representation: Integer; Expression: string);
+    procedure basrApartmColorFontSetColor(Element: TBoldElement; var AColor: TColor;
+      Representation: Integer; Expression: string);
+    procedure basrClientColorFontSetColor(Element: TBoldElement; var AColor: TColor;
+      Representation: Integer; Expression: string);
+    procedure basrClientColorFontSetFont(Element: TBoldElement; AFont: TFont;
+      Representation: Integer; Expression: string);
+    procedure basrApClassColorFontSetFont(Element: TBoldElement; AFont: TFont;
+      Representation: Integer; Expression: string);
+    procedure basrApClassColorFontSetColor(Element: TBoldElement; var AColor: TColor;
+      Representation: Integer; Expression: string);
+    procedure basrMeryFontColorSetColor(Element: TBoldElement;
+      var AColor: TColor; Representation: Integer; Expression: string);
+    procedure basrMeryBackColorSetColor(Element: TBoldElement;
+      var AColor: TColor; Representation: Integer; Expression: string);
+    procedure basrWallFontColorSetColor(Element: TBoldElement;
+      var AColor: TColor; Representation: Integer; Expression: string);
+    procedure basrWallBackColorSetColor(Element: TBoldElement;
+      var AColor: TColor; Representation: Integer; Expression: string);
+    procedure basrSetFontColorSetColor(Element: TBoldElement;
+      var AColor: TColor; Representation: Integer; Expression: string);
+    procedure basrSelBackColorSetColor(Element: TBoldElement;
+      var AColor: TColor; Representation: Integer; Expression: string);
+    procedure basrFreeFontColorSetColor(Element: TBoldElement;
+      var AColor: TColor; Representation: Integer; Expression: string);
+    procedure basrFreeBackColorSetColor(Element: TBoldElement;
+      var AColor: TColor; Representation: Integer; Expression: string);
+    procedure basrClassBackColorSetColor(Element: TBoldElement;
+      var AColor: TColor; Representation: Integer; Expression: string);
+    procedure basrClassFontColorSetColor(Element: TBoldElement;
+      var AColor: TColor; Representation: Integer; Expression: string);
+    procedure CheckCurrentRentReserved;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  BoldOthHandleCompDM: TBoldOthHandleCompDM;
+
+implementation
+
+{$R *.dfm}
+
+uses ModelDM, MainForm, HandlesDM,
+  ReleaseStructUnit, BusinessClasses,
+  AllMagEnumFormUnit, DateUtils, Dialogs,
+  ImageLists;
+
+procedure TBoldOthHandleCompDM.CheckCurrentRentReserved;
+begin
+   if BoldHandlesDM.blhResSearch.List.Count>0 then
+      ShowMessage('Параметры текущей аренды конфликтуют с бронью на этот номер (дата бронирования лежит между датами аренды)!');
+end;
+
+procedure TBoldOthHandleCompDM.basrClassFontColorSetColor(Element: TBoldElement;
+  var AColor: TColor; Representation: Integer; Expression: string);
+begin
+  if Element<>nil then
+    begin
+      AColor:=
+        StrToInt64((Element as TKlass_nomera).Cvet_teksta_klassa);
+    end;
+end;
+
+procedure TBoldOthHandleCompDM.basrClassBackColorSetColor(Element: TBoldElement;
+  var AColor: TColor; Representation: Integer; Expression: string);
+begin
+if Element<>nil then
+    begin
+      AColor:=
+        StrToInt64((Element as TKlass_nomera).Cvet_fona_klassa);
+    end;
+end;
+
+procedure TBoldOthHandleCompDM.basrFreeBackColorSetColor(Element: TBoldElement;
+  var AColor: TColor; Representation: Integer; Expression: string);
+begin
+if Element<>nil then
+  begin
+   try
+    AColor:=
+      StrToInt64((Element as TNastroiki).Cvet_fona_svobodnyh);
+   except
+     ShowMessage('Неверное числовое значение!');
+   end;
+  end;
+end;
+
+procedure TBoldOthHandleCompDM.basrFreeFontColorSetColor(Element: TBoldElement;
+  var AColor: TColor; Representation: Integer; Expression: string);
+begin
+if Element<>nil then
+  begin
+    AColor:=
+      StrToInt64((Element as TNastroiki).Cvet_teksta_svob);
+  end;
+end;
+
+procedure TBoldOthHandleCompDM.basrSelBackColorSetColor(Element: TBoldElement;
+  var AColor: TColor; Representation: Integer; Expression: string);
+begin
+if Element<>nil then
+  begin
+    AColor:=
+      StrToInt64((Element as TNastroiki).Cvet_fona_zanyatyh);
+  end;
+end;
+
+procedure TBoldOthHandleCompDM.basrSetFontColorSetColor(Element: TBoldElement;
+  var AColor: TColor; Representation: Integer; Expression: string);
+begin
+if Element<>nil then
+  begin
+    AColor:=
+      StrToInt64((Element as TNastroiki).Cvet_teksta_zanyatyh);
+  end;
+end;
+
+procedure TBoldOthHandleCompDM.basrWallBackColorSetColor(Element: TBoldElement;
+  var AColor: TColor; Representation: Integer; Expression: string);
+begin
+if Element<>nil then
+  begin
+    AColor:=
+      StrToInt64((Element as TNastroiki).Cvet_fona_bronir);
+  end;
+end;
+
+procedure TBoldOthHandleCompDM.basrWallFontColorSetColor(Element: TBoldElement;
+  var AColor: TColor; Representation: Integer; Expression: string);
+begin
+if Element<>nil then
+  begin
+    AColor:=
+      StrToInt64((Element as TNastroiki).Cvet_teksta_bronir);
+  end;
+end;
+
+procedure TBoldOthHandleCompDM.basrMeryBackColorSetColor(Element: TBoldElement;
+  var AColor: TColor; Representation: Integer; Expression: string);
+begin
+if Element<>nil then
+  begin
+    AColor:=
+      StrToInt64((Element as TNastroiki).Cvet_fona_perenasel);
+  end;
+end;
+
+procedure TBoldOthHandleCompDM.basrMeryFontColorSetColor(Element: TBoldElement;
+  var AColor: TColor; Representation: Integer; Expression: string);
+begin
+if Element<>nil then
+  begin
+    AColor:=
+      StrToInt64((Element as TNastroiki).Cvet_teksta_perenasel);
+  end;
+end;
+
+procedure TBoldOthHandleCompDM.basrApClassColorFontSetColor(Element: TBoldElement;
+  var AColor: TColor; Representation: Integer; Expression: string);
+begin
+if Element<>nil then
+  begin
+    AColor:=
+      StrToInt64((Element as TKlass_nomera).Cvet_fona_klassa);
+  end;
+end;
+
+procedure TBoldOthHandleCompDM.basrApClassColorFontSetFont(Element: TBoldElement;
+  AFont: TFont; Representation: Integer; Expression: string);
+begin
+if Element<>nil then
+  begin
+    AFont.Color:=
+      StrToInt64((Element as TKlass_nomera).Cvet_teksta_klassa);
+  end;
+end;
+
+procedure TBoldOthHandleCompDM.basrClientColorFontSetFont(Element: TBoldElement;
+  AFont: TFont; Representation: Integer; Expression: string);
+begin
+if Element<>nil then
+  begin
+    AFont.Color:=
+      StrToInt64((BoldHandlesDM.blhSettObj.CurrentElement as TNastroiki).Cvet_teksta_ogid);
+  end;
+end;
+
+procedure TBoldOthHandleCompDM.basrClientColorFontSetColor(Element: TBoldElement;
+  var AColor: TColor; Representation: Integer; Expression: string);
+begin
+if Element<>nil then
+  begin
+    AColor:=
+      StrToInt64((BoldHandlesDM.blhSettObj.CurrentElement as TNastroiki).Cvet_fona_ogid);
+  end;
+end;
+
+procedure TBoldOthHandleCompDM.basrApartmColorFontSetColor(Element: TBoldElement;
+  var AColor: TColor; Representation: Integer; Expression: string);
+begin
+if Element<>nil then
+  begin
+   if (Element as TNomer_arendy).Zadolgaet_klient then
+    AColor:=
+      StrToInt64((BoldHandlesDM.blhSettObj.CurrentElement as TNastroiki).Cvet_fona_neoplach)
+   else if (Element as TNomer_arendy).Sverh_sroka then
+    AColor:=
+      StrToInt64((BoldHandlesDM.blhSettObj.CurrentElement as TNastroiki).Cvet_fona_sverhsroka)
+   else if (Element as TNomer_arendy).Perepolnen then
+    AColor:=
+      StrToInt64((BoldHandlesDM.blhSettObj.CurrentElement as TNastroiki).Cvet_fona_perenasel)
+   else if (Element as TNomer_arendy).Zabronirovan then
+    AColor:=
+      StrToInt64((BoldHandlesDM.blhSettObj.CurrentElement as TNastroiki).Cvet_fona_bronir)
+   else if (Element as TNomer_arendy).Zanyat then
+    AColor:=
+      StrToInt64((BoldHandlesDM.blhSettObj.CurrentElement as TNastroiki).Cvet_fona_zanyatyh)
+   else if (Element as TNomer_arendy).Svoboden then
+    AColor:=
+      StrToInt64((BoldHandlesDM.blhSettObj.CurrentElement as TNastroiki).Cvet_fona_svobodnyh)
+   else
+     begin
+     end;
+  end;
+end;
+
+procedure TBoldOthHandleCompDM.basrApartmColorFontSetFont(Element: TBoldElement;
+  AFont: TFont; Representation: Integer; Expression: string);
+begin
+if Element<>nil then
+  begin
+   if (Element as TNomer_arendy).Zadolgaet_klient then
+    AFont.Color:=
+      StrToInt64((BoldHandlesDM.blhSettObj.CurrentElement as TNastroiki).Cvet_teksta_neoplach)
+   else if (Element as TNomer_arendy).Sverh_sroka then
+    AFont.Color:=
+      StrToInt64((BoldHandlesDM.blhSettObj.CurrentElement as TNastroiki).Cvet_teksta_sverhsroka)
+   else if (Element as TNomer_arendy).Perepolnen then
+    AFont.Color:=
+      StrToInt64((BoldHandlesDM.blhSettObj.CurrentElement as TNastroiki).Cvet_teksta_perenasel)
+   else if (Element as TNomer_arendy).Zabronirovan then
+    AFont.Color:=
+      StrToInt64((BoldHandlesDM.blhSettObj.CurrentElement as TNastroiki).Cvet_teksta_bronir)
+   else if (Element as TNomer_arendy).Zanyat then
+    AFont.Color:=
+      StrToInt64((BoldHandlesDM.blhSettObj.CurrentElement as TNastroiki).Cvet_teksta_zanyatyh)
+   else if (Element as TNomer_arendy).Svoboden then
+    AFont.Color:=
+      StrToInt64((BoldHandlesDM.blhSettObj.CurrentElement as TNastroiki).Cvet_teksta_svob)
+   else
+     begin
+     end;
+  end;
+
+end;
+
+procedure TBoldOthHandleCompDM.basrDaysCountSetSetAsString(
+  Element: TBoldElement; NewValue: string; Representation: Integer;
+  Expression: string);
+var ApartmInfo: string;
+    i: Integer;
+begin
+if Element<>nil then
+  begin
+   try
+
+    StrToInt(NewValue);
+    
+    ApartmInfo:='';
+      for i:=0 to (Element
+        as TList_klienta).Opis_prog_klienta.Count-1 do
+          ApartmInfo:=
+            ApartmInfo+' '+
+              ((Element
+                as TList_klienta).Opis_prog_klienta.Elements[i] as TKlient).Polnoe_imya;
+
+      ReleaseStructForm.AddCurrUserLog('Изменение количества дней проживания, номер '+
+       IntToStr((Element
+        as TList_klienta).Opis_progiv_v.Nomer)+' предыдущие значения по изменяемой аренде: стоимость '+
+        FloatToStr((Element
+        as TList_klienta).Oplata_vsya)+'оплачено всего с учётом доставки '+
+        FloatToStr((Element
+        as TList_klienta).Oplacheno_vsego) +', клиенты: '+
+      ApartmInfo+', дата въезда '+DateTimeToStr((Element
+        as TList_klienta).Data_vjezda)+', дата выезда '+DateTimeToStr((Element
+        as TList_klienta).Data_vyezda));
+
+    (Element as TList_Klienta).Data_vyezda:=
+      StartOfTheDay(IncDay((Element as TList_Klienta).Data_vjezda,
+        StrToInt(NewValue)));
+
+     BoldOthHandleCompDM.CheckCurrentRentReserved;
+
+   except
+    ShowMessage('Видимо неверно введено числовое значение!');
+   end;
+  end;
+end;
+
+function TBoldOthHandleCompDM.basrDaysCountSetGetAsString(Element: TBoldElement;
+  Representation: Integer; Expression: string): string;
+begin
+  Result := '';
+  if Assigned(Element) then
+  begin
+    Result:=
+      FloatToStr((Element as TList_Klienta).V_dnyah_vych);
+  end;
+end;
+
+function TBoldOthHandleCompDM.basrWallBackColorGetAsString(
+  Element: TBoldElement; Representation: Integer; Expression: string): string;
+begin
+  Result := '';
+  if Assigned(Element) then
+  begin
+   Result :=
+    (Element as TNastroiki).Cvet_fona_bronir;
+  end;
+end;
+
+procedure TBoldOthHandleCompDM.basrMeryTimeColorFontSetColor(Element: TBoldElement;
+  var AColor: TColor; Representation: Integer; Expression: string);
+begin
+if Element<>nil then
+  begin
+    AColor:=
+      StrToInt64((Element as TNastroiki).Cvet_fona_sverhsroka);
+  end;
+end;
+
+procedure TBoldOthHandleCompDM.basrMeryTimeColorFontSetFont(Element: TBoldElement;
+  AFont: TFont; Representation: Integer; Expression: string);
+begin
+if Element<>nil then
+  begin
+    AFont.Color:=
+      StrToInt64((Element as TNastroiki).Cvet_teksta_sverhsroka);
+  end;
+end;
+
+procedure TBoldOthHandleCompDM.basrUnSaleColorFontSetColor(Element: TBoldElement;
+  var AColor: TColor; Representation: Integer; Expression: string);
+begin
+if Element<>nil then
+  begin
+    AColor:=
+      StrToInt64((Element as TNastroiki).Cvet_fona_neoplach);
+  end;
+end;
+
+procedure TBoldOthHandleCompDM.basrUnSaleColorFontSetFont(Element: TBoldElement;
+  AFont: TFont; Representation: Integer; Expression: string);
+begin
+if Element<>nil then
+  begin
+    AFont.Color:=
+      StrToInt64((Element as TNastroiki).Cvet_teksta_neoplach);
+  end;
+end;
+
+procedure TBoldOthHandleCompDM.basrSetRoomPriceSetAsString(
+  Element: TBoldElement; NewValue: string; Representation: Integer;
+  Expression: string);
+var OldPrice: Double;
+begin
+ if Element <> nil then
+    begin
+
+       (BoldHandlesDM.blhSettObj.Value as TNastroiki).Tek_vremya:=
+         Today+Time;
+       (BoldHandlesDM.blhSettObj.Value as TNastroiki).Tekushee_vremya:=
+         Today+Time;
+      try
+        (Element as TNomer_arendy).Stoimostj_v_sutki:=
+           StrToFloat(NewValue);
+      except
+        ShowMessage('Неверное значение!');
+      end;
+      
+    end;
+
+end;
+
+procedure TBoldOthHandleCompDM.basrSetClassPriceSetAsString(
+  Element: TBoldElement; NewValue: string; Representation: Integer;
+  Expression: string);
+var OldPrice: Double;
+    i: Integer;
+begin
+  if Element <> nil then
+    begin
+      (BoldHandlesDM.blhSettObj.Value as TNastroiki).Tek_vremya:=
+         Today+Time;
+      (BoldHandlesDM.blhSettObj.Value as TNastroiki).Tekushee_vremya:=
+         Today+Time;
+      try
+      (Element as TKlass_nomera).Bazovaya_cena:=
+           StrToFloat(NewValue);
+      except
+        ShowMessage('Неверное значение!');
+      end;
+    end;
+
+    {if (Element as TKlass_nomera).Bazovaya_cena<>0 then
+        begin
+
+    ShowMessage('Для всех активных аренд номеров, зависящих от цены класса, будет произведена переоценка стоимости!');
+    if MessageDlg('Провести операцию?', mtConfirmation,[mbYes,mbNo],0) = mrYes then
+     begin
+
+
+  BoldModelDM.BoldUpdateDBAction1.Execute;
+
+      try
+        StrToFloat(NewValue);
+
+        OldPrice:=
+          (Element as TKlass_nomera).Kompleksnaya_cena;
+        (Element as TKlass_nomera).Bazovaya_cena:=
+           StrToFloat(NewValue);
+        if (Element as TKlass_nomera).Kompleksnaya_cena<>
+          OldPrice then
+            begin
+              for i:=0 to (Element as TKlass_nomera).Opredelyaet_urovenj.Count-1 do
+                begin
+                  if ((Element as TKlass_nomera).Opredelyaet_urovenj.Elements[i]  as TNomer_arendy).Opred_stoim_ot_klassa then
+                    begin
+                      ReleaseStructForm.SetNewRentPrice(((Element as TKlass_nomera).Opredelyaet_urovenj.Elements[i]  as TNomer_arendy),
+                        ((Element as TKlass_nomera).Opredelyaet_urovenj.Elements[i]  as TNomer_arendy).Stoim_v_sutki_vychisl);
+                    end;
+                end;
+
+            end;
+
+     end;
+     
+     end
+      else
+
+    end; }
+end;
+
+procedure TBoldOthHandleCompDM.basrReservPercentSetAsString(
+  Element: TBoldElement; NewValue: string; Representation: Integer;
+  Expression: string);
+begin
+if Element<>nil then
+  begin
+    try
+      StrToFloat(NewValue);
+      (Element as TList_klienta).Procent_otchisl_bronj:=
+         StrToFloat(NewValue);
+      (Element as TList_klienta).Summa_bronj:=
+         (Element as TList_klienta).Oplata_vsya*
+           ((Element as TList_klienta).Procent_otchisl_bronj/100);
+    except
+      ShowMessage('Неверное значение числа!');
+    end;
+  end;
+end;
+
+procedure TBoldOthHandleCompDM.KlientDeleteActionExecute(Sender: TObject);
+begin
+  (BoldOthHandleCompDM.brhCurrClient.Value
+    as TKlient).Delete;
+end;
+
+function TBoldOthHandleCompDM.basrSetOptionsClassGetAsString(
+  Element: TBoldElement; Representation: Integer; Expression: string): string;
+begin
+  Result := '';
+  if Assigned(Element) then
+  begin
+    if (Element as TOpciiya_urovnya).Vklyuchaetsya_v_klassah<>nil then
+      Result:=(Element as TOpciiya_urovnya).Vklyuchaetsya_v_klassah.Naimenovanie
+    else
+      Result := 'Не определен';
+  end;
+
+end;
+
+function TBoldOthHandleCompDM.basrSetPriceClassGetAsString(
+  Element: TBoldElement; Representation: Integer; Expression: string): string;
+begin
+  Result := '';
+  if Assigned(Element) then
+  begin
+    if (Element as TCenovaya_politika).Opredelyaet_cenu_dlya<>nil then
+      Result:=(Element as TCenovaya_politika).Opredelyaet_cenu_dlya.Naimenovanie
+    else
+      Result := 'Не определен';
+  end;
+
+end;
+
+function TBoldOthHandleCompDM.basrLookUpClassGetAsString(Element: TBoldElement;
+  Representation: Integer; Expression: string): string;
+begin
+  Result := 'Не определен';
+  if Assigned(Element) then
+  begin
+    Result:=(Element as TKlass_nomera).Naimenovanie;
+  end;
+
+end;
+
+end.

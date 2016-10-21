@@ -1,0 +1,1 @@
+UPDATE Log_operacii SET Kommentarii=Naimenovanie_operacii

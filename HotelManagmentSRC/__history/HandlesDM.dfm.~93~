@@ -1,0 +1,674 @@
+object BoldHandlesDM: TBoldHandlesDM
+  OldCreateOrder = False
+  Height = 579
+  Width = 521
+  object blhAllClientList: TBoldListHandle
+    RootHandle = BoldModelDM.bsh
+    Expression = 'Klient.allInstances'
+    Left = 192
+    Top = 48
+  end
+  object blhUsersList: TBoldListHandle
+    RootHandle = BoldModelDM.bsh
+    Expression = 'Personal.allInstances'
+    Left = 352
+    Top = 48
+  end
+  object ALAllClient: TActionList
+    Left = 264
+    Top = 48
+    object BoldListHandleAddNewActionAllKlient: TBoldListHandleAddNewAction
+      Category = 'Bold Actions'
+      Caption = #1044#1086#1073#1072#1074#1080#1090#1100
+      Enabled = False
+      BoldHandle = blhAllClientList
+    end
+    object BoldListHandleDeleteActionAllKlient: TBoldListHandleDeleteAction
+      Category = 'Bold Actions'
+      Caption = 'Delete'
+      BoldHandle = blhAllClientList
+    end
+  end
+  object bvhStarDate: TBoldVariableHandle
+    StaticSystemHandle = BoldModelDM.bsh
+    ValueTypeName = 'DateTime'
+    Left = 312
+    Top = 464
+  end
+  object bvhEndDate: TBoldVariableHandle
+    StaticSystemHandle = BoldModelDM.bsh
+    ValueTypeName = 'DateTime'
+    Left = 344
+    Top = 464
+  end
+  object blhLogSearchResult: TBoldListHandle
+    RootHandle = BoldModelDM.bsh
+    Expression = 
+      'Log_operacii.allInstances->select((ot_deistvii=bv_Persona) or (b' +
+      'v_Persona=nil))->select((data >=bv_StartDate) and (data<=bv_EndD' +
+      'ate))'
+    Variables = bovLogSearch
+    Left = 192
+    Top = 464
+  end
+  object ALAllUsers: TActionList
+    Left = 416
+    Top = 48
+    object BoldListHandleAddNewActionAllUsers: TBoldListHandleAddNewAction
+      Category = 'Bold Actions'
+      Caption = #1053#1086#1074#1099#1081
+      Enabled = False
+      BoldHandle = blhUsersList
+    end
+    object BoldListHandleDeleteActionAllUsers: TBoldListHandleDeleteAction
+      Category = 'Bold Actions'
+      Caption = #1059#1076#1072#1083#1080#1090#1100
+      Enabled = False
+      BoldHandle = blhUsersList
+    end
+  end
+  object blhCurrUser: TBoldListHandle
+    RootHandle = BoldModelDM.bsh
+    Expression = 'Personal.allInstances->select(login=bv_UserLogin)'
+    Variables = bovCurrUser
+    Left = 192
+    Top = 96
+  end
+  object blhCurrUserLogs: TBoldListHandle
+    RootHandle = blhCurrUser
+    Expression = 'deistviya_fiksiruyutsya_v'
+    Left = 264
+    Top = 96
+  end
+  object bvhCurrUserLogin: TBoldVariableHandle
+    StaticSystemHandle = BoldModelDM.bsh
+    ValueTypeName = 'String'
+    Left = 376
+    Top = 96
+  end
+  object bovCurrUser: TBoldOclVariables
+    Variables = <
+      item
+        BoldHandle = bvhCurrUserLogin
+        VariableName = 'bv_UserLogin'
+        UseListElement = False
+      end>
+    Left = 344
+    Top = 96
+  end
+  object blhAllRooms: TBoldListHandle
+    RootHandle = BoldModelDM.bsh
+    Expression = 'Nomer_arendy.allInstances'
+    Left = 32
+    Top = 8
+  end
+  object blhAllRoomClass: TBoldListHandle
+    RootHandle = BoldModelDM.bsh
+    Expression = 'Klass_nomera.allInstances'
+    Left = 32
+    Top = 56
+  end
+  object ALRePriceSale: TActionList
+    Images = ImageListsDM.MagListManipPanelIL
+    Left = 384
+    Top = 224
+    object AddNewRePriceAction: TAction
+      Category = 'Bold Actions'
+      Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1087#1086#1079#1080#1094#1080#1102' '#1087#1077#1088#1077#1086#1094#1077#1085#1082#1080
+      Enabled = False
+      ImageIndex = 0
+      OnExecute = AddNewRePriceActionExecute
+    end
+    object DeleteRePriceAction: TAction
+      Category = 'Bold Actions'
+      Caption = #1059#1076#1072#1083#1080#1090#1100' '#1087#1086#1079#1080#1094#1080#1102' '#1087#1077#1088#1077#1086#1094#1077#1085#1082#1080
+      ImageIndex = 1
+      OnExecute = DeleteRePriceActionExecute
+    end
+    object LateRentaAction: TAction
+      Category = 'Bold Actions'
+      Caption = #1055#1088#1086#1076#1083#1077#1085#1080#1077' '#1087#1088#1086#1078#1080#1074#1072#1085#1080#1103
+      Enabled = False
+      ImageIndex = 3
+      OnExecute = LateRentaActionExecute
+    end
+    object AddNewSaleAction: TAction
+      Category = 'Bold Actions'
+      Caption = #1044#1086#1073#1072#1074#1080#1090#1100' '#1086#1087#1083#1072#1090#1091
+      Enabled = False
+      ImageIndex = 0
+      OnExecute = AddNewSaleActionExecute
+    end
+    object DeleteSaleAction: TAction
+      Category = 'Bold Actions'
+      Caption = #1059#1076#1072#1083#1080#1090#1100' '#1086#1087#1083#1072#1090#1091
+      ImageIndex = 1
+      OnExecute = DeleteSaleActionExecute
+    end
+  end
+  object blhAllHotels: TBoldListHandle
+    RootHandle = BoldModelDM.bsh
+    Expression = 'Otelj.allInstances'
+    Left = 32
+    Top = 152
+  end
+  object ALAllHotels: TActionList
+    Left = 104
+    Top = 152
+    object BoldListHandleAddNewActionAllHotels: TBoldListHandleAddNewAction
+      Category = 'Bold Actions'
+      Caption = #1044#1086#1073#1072#1074#1080#1090#1100
+      Enabled = False
+      BoldHandle = blhAllHotels
+    end
+  end
+  object ALRoomClass: TActionList
+    Left = 104
+    Top = 56
+    object BoldListHandleAddNewActionAllRoomClass: TBoldListHandleAddNewAction
+      Category = 'Bold Actions'
+      Caption = #1053#1086#1074#1099#1081' '#1082#1083#1072#1089#1089
+      BoldHandle = blhAllRoomClass
+    end
+  end
+  object blhSettObj: TBoldListHandle
+    RootHandle = BoldModelDM.bsh
+    Expression = 'Nastroiki.allInstances'
+    Left = 104
+    Top = 8
+  end
+  object blhHotelRooms: TBoldListHandle
+    RootHandle = blhAllHotels
+    Expression = 'imeet_nomera'
+    Left = 32
+    Top = 200
+  end
+  object ALHotelRooms: TActionList
+    Left = 104
+    Top = 200
+    object BoldListHandleAddNewActionHotelRooms: TBoldListHandleAddNewAction
+      Category = 'Bold Actions'
+      Caption = 'Add New'
+      BoldHandle = blhHotelRooms
+    end
+  end
+  object blhAllPricePolitik: TBoldListHandle
+    RootHandle = BoldModelDM.bsh
+    Expression = 'Cenovaya_politika.allInstances'
+    Left = 32
+    Top = 248
+  end
+  object blhAllReserved: TBoldListHandle
+    RootHandle = BoldModelDM.bsh
+    Expression = 
+      'Bronj.allInstances->select(not proideno or not bv_ORA)'#13'->select(' +
+      'ne_priehal or not bv_ORU)'#13' ->select(zanyal_nomer or not bv_ORS)'#13 +
+      '->select((rezerviruet=bv_Room) or (bv_Room=nil))'#13'->orderby(na_da' +
+      'tu)'
+    Variables = bovAllReserved
+    Left = 192
+    Top = 144
+  end
+  object blhAllWaitings: TBoldListHandle
+    RootHandle = BoldModelDM.bsh
+    Expression = 
+      'Ogidanie.allInstances->select(not proideno or not bv_OWA)'#13'->sele' +
+      'ct(dogdalsya or not bv_OWS)'#13'->select(ne_dogdalsya or not bv_OWU)' +
+      #13'->orderby(nachalo_ogidaniya)'
+    Variables = bovAllWaitings
+    Left = 192
+    Top = 184
+  end
+  object ALPricePolitik: TActionList
+    Left = 104
+    Top = 248
+    object BoldListHandleAddNewActionAllPrPolit: TBoldListHandleAddNewAction
+      Category = 'Bold Actions'
+      Caption = #1044#1086#1073#1072#1074#1080#1090#1100
+      Enabled = False
+      BoldHandle = blhAllPricePolitik
+    end
+    object BoldListHandleAddNewActionPolitikDiscount: TBoldListHandleAddNewAction
+      Category = 'Bold Actions'
+      Caption = #1044#1086#1073#1072#1074#1080#1090#1100
+      Enabled = False
+      BoldHandle = blhPolitikDiscounts
+    end
+    object BoldListHandleDeleteActionPolitikDiscount: TBoldListHandleDeleteAction
+      Category = 'Bold Actions'
+      Caption = #1059#1076#1072#1083#1080#1090#1100
+      Enabled = False
+      BoldHandle = blhPolitikDiscounts
+    end
+    object BoldListHandleDeleteActionAllPrPolit: TBoldListHandleDeleteAction
+      Category = 'Bold Actions'
+      Caption = #1059#1076#1072#1083#1080#1090#1100
+      Enabled = False
+      BoldHandle = blhAllPricePolitik
+    end
+  end
+  object bovAllReserved: TBoldOclVariables
+    Variables = <
+      item
+        BoldHandle = bvhOnlyResAct
+        VariableName = 'bv_ORA'
+        UseListElement = False
+      end
+      item
+        BoldHandle = bvhOnlyResSuc
+        VariableName = 'bv_ORS'
+        UseListElement = False
+      end
+      item
+        BoldHandle = bvhOnlyResUns
+        VariableName = 'bv_ORU'
+        UseListElement = False
+      end
+      item
+        BoldHandle = BoldOthHandleCompDM.brhCurrRoom
+        VariableName = 'bv_Room'
+        UseListElement = False
+      end>
+    Left = 272
+    Top = 144
+  end
+  object bovAllWaitings: TBoldOclVariables
+    Variables = <
+      item
+        BoldHandle = bvhOnlyWaitAct
+        VariableName = 'bv_OWA'
+        UseListElement = False
+      end
+      item
+        BoldHandle = bvhOnlyWaitSuc
+        VariableName = 'bv_OWS'
+        UseListElement = False
+      end
+      item
+        BoldHandle = bvhOnlyWaitUns
+        VariableName = 'bv_OWU'
+        UseListElement = False
+      end>
+    Left = 272
+    Top = 184
+  end
+  object bvhOnlyResAct: TBoldVariableHandle
+    StaticSystemHandle = BoldModelDM.bsh
+    ValueTypeName = 'Boolean'
+    Left = 344
+    Top = 144
+  end
+  object bvhOnlyResSuc: TBoldVariableHandle
+    StaticSystemHandle = BoldModelDM.bsh
+    ValueTypeName = 'Boolean'
+    Left = 376
+    Top = 144
+  end
+  object bvhOnlyResUns: TBoldVariableHandle
+    StaticSystemHandle = BoldModelDM.bsh
+    ValueTypeName = 'Boolean'
+    Left = 408
+    Top = 144
+  end
+  object bvhOnlyWaitAct: TBoldVariableHandle
+    StaticSystemHandle = BoldModelDM.bsh
+    ValueTypeName = 'Boolean'
+    Left = 344
+    Top = 184
+  end
+  object bvhOnlyWaitSuc: TBoldVariableHandle
+    StaticSystemHandle = BoldModelDM.bsh
+    ValueTypeName = 'Boolean'
+    Left = 376
+    Top = 184
+  end
+  object bvhOnlyWaitUns: TBoldVariableHandle
+    StaticSystemHandle = BoldModelDM.bsh
+    ValueTypeName = 'Boolean'
+    Left = 408
+    Top = 184
+  end
+  object blhAllOptions: TBoldListHandle
+    RootHandle = BoldModelDM.bsh
+    Expression = 'Opciiya_urovnya.allInstances'
+    Left = 32
+    Top = 104
+  end
+  object ALAllOptions: TActionList
+    Left = 104
+    Top = 104
+    object BoldListHandleAddNewActionAllOptinos: TBoldListHandleAddNewAction
+      Category = 'Bold Actions'
+      Caption = #1044#1086#1073#1072#1074#1080#1090#1100
+      Enabled = False
+      BoldHandle = blhAllOptions
+    end
+  end
+  object blhClientSearch: TBoldListHandle
+    RootHandle = BoldModelDM.bsh
+    Expression = 
+      'Klient.allInstances->select((imenovanie.sqlLike('#39'%'#39'+bv_Keywrd+'#39'%' +
+      #39'))'#13' or (imenovanie.toLower.sqlLike('#39'%'#39'+bv_Keywrd+'#39'%'#39'))'#13' or (ime' +
+      'novanie.toUpper.sqlLike('#39'%'#39'+bv_Keywrd+'#39'%'#39')))'
+    Variables = bovClientSearch
+    Left = 192
+    Top = 368
+  end
+  object blhApartmSearch: TBoldListHandle
+    RootHandle = BoldModelDM.bsh
+    Expression = 
+      'Nomer_arendy.allInstances'#13'->select((chislo_chelovek>=bv_ManQ) or' +
+      ' (bv_ManQ<=0))'#13'->select(stoim_v_sutki_vychisl<=bv_ApartmPrice)'#13'-' +
+      '>select(svoboden or not bv_OnlyFreeApartm)'#13'->select((sootvetstvu' +
+      'et = bv_SearchClass) or (bv_SearchClass=nil))'
+    Variables = bovApartmSearch
+    Left = 192
+    Top = 416
+  end
+  object bovClientSearch: TBoldOclVariables
+    Variables = <
+      item
+        BoldHandle = bvhlientSearchWord
+        VariableName = 'bv_Keywrd'
+        UseListElement = False
+      end>
+    Left = 272
+    Top = 368
+  end
+  object bovApartmSearch: TBoldOclVariables
+    Variables = <
+      item
+        BoldHandle = bvhManQuantity
+        VariableName = 'bv_ManQ'
+        UseListElement = False
+      end
+      item
+        BoldHandle = bvhApartmPrice
+        VariableName = 'bv_ApartmPrice'
+        UseListElement = False
+      end
+      item
+        BoldHandle = bvhOnlyFreeApartm
+        VariableName = 'bv_OnlyFreeApartm'
+        UseListElement = False
+      end
+      item
+        BoldHandle = brhApartSearchClass
+        VariableName = 'bv_SearchClass'
+        UseListElement = False
+      end>
+    Left = 280
+    Top = 416
+  end
+  object bvhlientSearchWord: TBoldVariableHandle
+    StaticSystemHandle = BoldModelDM.bsh
+    ValueTypeName = 'String'
+    Left = 304
+    Top = 368
+  end
+  object bvhManQuantity: TBoldVariableHandle
+    StaticSystemHandle = BoldModelDM.bsh
+    ValueTypeName = 'Integer'
+    Left = 312
+    Top = 416
+  end
+  object bvhApartmPrice: TBoldVariableHandle
+    StaticSystemHandle = BoldModelDM.bsh
+    ValueTypeName = 'Float'
+    Left = 376
+    Top = 416
+  end
+  object bvhOnlyFreeApartm: TBoldVariableHandle
+    StaticSystemHandle = BoldModelDM.bsh
+    ValueTypeName = 'Boolean'
+    Left = 344
+    Top = 416
+  end
+  object brhApartSearchClass: TBoldReferenceHandle
+    StaticSystemHandle = BoldModelDM.bsh
+    StaticValueTypeName = 'Klass_nomera'
+    Left = 408
+    Top = 416
+  end
+  object blhAllIndivids: TBoldListHandle
+    RootHandle = BoldModelDM.bsh
+    Expression = 
+      'Klient.allInstances->select(not yavl_yur_licom)->orderby(imenova' +
+      'nie)'
+    Left = 120
+    Top = 432
+  end
+  object blhAllCompanies: TBoldListHandle
+    RootHandle = BoldModelDM.bsh
+    Expression = 'Klient.allInstances->select(yavl_yur_licom)->orderby(imenovanie)'
+    Left = 120
+    Top = 384
+  end
+  object blhCurrClientDocSale: TBoldListHandle
+    RootHandle = BoldOthHandleCompDM.brhCurrClientDoc
+    Expression = 'imeet_oplatu'
+    Left = 192
+    Top = 224
+  end
+  object blhLastRoomReserve: TBoldListHandle
+    RootHandle = BoldOthHandleCompDM.brhCurrRoom
+    Expression = 
+      'zarezervirovan->select(not proideno)->orderby(data_bronirovaniya' +
+      ')'
+    Left = 32
+    Top = 400
+  end
+  object blhKassOutcome: TBoldListHandle
+    RootHandle = BoldModelDM.bsh
+    Expression = 
+      'Rash_dokument.allInstances->select(not yavl_rash_dostavshiku)'#13'->' +
+      'select(data_rashoda>#2000-01-01)'
+    Left = 120
+    Top = 328
+  end
+  object blhRePricePosition: TBoldListHandle
+    RootHandle = BoldOthHandleCompDM.brhCurrClientDoc
+    Expression = 'imeet_pereocenki'
+    Left = 296
+    Top = 224
+  end
+  object bovLogSearch: TBoldOclVariables
+    Variables = <
+      item
+        BoldHandle = bvhStarDate
+        VariableName = 'bv_StartDate'
+        UseListElement = False
+      end
+      item
+        BoldHandle = bvhEndDate
+        VariableName = 'bv_EndDate'
+        UseListElement = False
+      end
+      item
+        BoldHandle = brhLogSearchClient
+        VariableName = 'bv_Persona'
+        UseListElement = False
+      end>
+    Left = 280
+    Top = 464
+  end
+  object brhLogSearchClient: TBoldReferenceHandle
+    StaticSystemHandle = BoldModelDM.bsh
+    StaticValueTypeName = 'Personal'
+    Left = 376
+    Top = 464
+  end
+  object bovSearchRes: TBoldOclVariables
+    Variables = <
+      item
+        BoldHandle = behStRes
+        VariableName = 'bv_StartReserved'
+        UseListElement = False
+      end
+      item
+        BoldHandle = behEndRes
+        VariableName = 'bv_EndReserved'
+        UseListElement = False
+      end>
+    Left = 264
+  end
+  object blhResSearch: TBoldListHandle
+    RootHandle = BoldOthHandleCompDM.brhCurrClientDoc
+    Expression = 
+      'opis_progiv_v.zarezervirovan->select(na_datu>=bv_StartReserved)-' +
+      '>select(na_datu<=bv_EndReserved)->select(not proideno)'
+    Variables = bovSearchRes
+    Left = 192
+  end
+  object behStRes: TBoldExpressionHandle
+    RootHandle = BoldOthHandleCompDM.brhCurrClientDoc
+    Expression = 'data_vjezda'
+    Left = 328
+  end
+  object behEndRes: TBoldExpressionHandle
+    RootHandle = BoldOthHandleCompDM.brhCurrClientDoc
+    Expression = 'data_vyezda'
+    Left = 296
+  end
+  object blhAllBirthDays: TBoldListHandle
+    RootHandle = BoldModelDM.bsh
+    Expression = 
+      'Klient.allInstances->select(imeninnik)'#13'->select((progivanie->sel' +
+      'ect(not vyselen)->size>0) or bv_OABith)'
+    Variables = bovAllBithDay
+    Left = 192
+    Top = 272
+  end
+  object bvhOnlyActiveBithday: TBoldVariableHandle
+    StaticSystemHandle = BoldModelDM.bsh
+    ValueTypeName = 'Boolean'
+    Left = 296
+    Top = 272
+  end
+  object bovAllBithDay: TBoldOclVariables
+    Variables = <
+      item
+        BoldHandle = bvhOnlyActiveBithday
+        VariableName = 'bv_OABith'
+        UseListElement = False
+      end>
+    Left = 264
+    Top = 272
+  end
+  object blhEndOfRenta: TBoldListHandle
+    RootHandle = BoldModelDM.bsh
+    Expression = 
+      'List_klienta.allInstances->select(na_vyselenie)'#13'->select(sverh_s' +
+      'roka or not bv_OOvRent)'
+    Variables = bovEndOfRenta
+    Left = 192
+    Top = 320
+  end
+  object bvhOnlyOverRent: TBoldVariableHandle
+    StaticSystemHandle = BoldModelDM.bsh
+    ValueTypeName = 'Boolean'
+    Left = 304
+    Top = 320
+  end
+  object bovEndOfRenta: TBoldOclVariables
+    Variables = <
+      item
+        BoldHandle = bvhOnlyOverRent
+        VariableName = 'bv_OOvRent'
+        UseListElement = False
+      end>
+    Left = 272
+    Top = 320
+  end
+  object blhClientResCountByRoom: TBoldListHandle
+    RootHandle = BoldOthHandleCompDM.brhCurrClient
+    Expression = 
+      'imeet_broni->select(rezerviruet=bv_CurrRoom)->select(not proiden' +
+      'o)'
+    Variables = bovClientResCountByRoom
+    Left = 32
+    Top = 304
+  end
+  object bovClientResCountByRoom: TBoldOclVariables
+    Variables = <
+      item
+        BoldHandle = BoldOthHandleCompDM.brhCurrRoom
+        VariableName = 'bv_CurrRoom'
+        UseListElement = False
+      end>
+    Left = 32
+    Top = 352
+  end
+  object blhPolitikDiscounts: TBoldListHandle
+    RootHandle = blhAllPricePolitik
+    Expression = 'imeet_skidki'
+    Left = 72
+    Top = 264
+  end
+  object blhAllDiscountPolitik: TBoldListHandle
+    RootHandle = BoldModelDM.bsh
+    Expression = 'Discont_politika.allInstances'
+    Left = 32
+    Top = 512
+  end
+  object ALDiscountPolitik: TActionList
+    Left = 72
+    Top = 512
+    object BoldListHandleAddNewActionAllDiscountPolitik: TBoldListHandleAddNewAction
+      Category = 'Bold Actions'
+      Caption = #1044#1086#1073#1072#1074#1080#1090#1100
+      Enabled = False
+      BoldHandle = blhAllDiscountPolitik
+    end
+  end
+  object blhDiscountPolitikDList: TBoldListHandle
+    RootHandle = blhAllDiscountPolitik
+    Expression = 'rasschit_cherez'
+    Left = 112
+    Top = 512
+  end
+  object blhAllUnAssociatedDiscount: TBoldListHandle
+    RootHandle = BoldModelDM.bsh
+    Expression = 'Skidki.allInstances->select(yavl_osnov_dlya_rasch=nil)'
+    Left = 240
+    Top = 512
+  end
+  object blhAllPPByCPP: TBoldListHandle
+    RootHandle = blhAllPricePolitik
+    Expression = 'opredelyaet_cenu_dlya.imeet_bazovuyu_stoimostj'
+    Left = 144
+    Top = 264
+  end
+  object blhOtherPricePolitik: TBoldListHandle
+    RootHandle = blhAllPricePolitik
+    Expression = 
+      'Klass_nomera.allInstances->difference(self.opredelyaet_cenu_dlya' +
+      ')'
+    Left = 168
+    Top = 248
+  end
+  object blhCurrPPDL: TBoldListHandle
+    RootHandle = blhAllPricePolitik
+    Expression = 'opredelyaet_cenu_dlya.imeet_bazovuyu_stoimostj'
+    Left = 208
+    Top = 264
+  end
+  object blhAllCurrentHotelApartments: TBoldListHandle
+    RootHandle = blhAllHotels
+    Expression = 'imeet_nomera'
+    Left = 392
+    Top = 512
+  end
+  object bvhChartStartDate: TBoldVariableHandle
+    StaticSystemHandle = BoldModelDM.bsh
+    ValueTypeName = 'Date'
+    Left = 440
+    Top = 272
+  end
+  object bvhChartEndDate: TBoldVariableHandle
+    StaticSystemHandle = BoldModelDM.bsh
+    ValueTypeName = 'Date'
+    Left = 440
+    Top = 320
+  end
+end
